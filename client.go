@@ -740,6 +740,16 @@ func (client *gocloak) UpdateClientScope(ctx context.Context, token, realm strin
 	return checkForError(resp, err, errMessage)
 }
 
+func (client *gocloak) UpdateClientScopeProtocolMapper(ctx context.Context, token, realm, scopeID, mapperID string, mapper ProtocolMapperRepresentation) error {
+	const errMessage = "could not update client scope protocol mapper"
+
+	resp, err := client.getRequestWithBearerAuth(ctx, token).
+		SetBody(mapper).
+		Put(client.getAdminRealmURL(realm, "client-scopes", scopeID, "protocol-mappers", "models", mapperID))
+
+	return checkForError(resp, err, errMessage)
+}
+
 func (client *gocloak) DeleteGroup(ctx context.Context, token, realm, groupID string) error {
 	const errMessage = "could not delete group"
 

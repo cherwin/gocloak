@@ -84,6 +84,8 @@ type GoCloak interface {
 	UpdateClient(ctx context.Context, accessToken, realm string, updatedClient Client) error
 	// UpdateClientScope updates the given clientScope
 	UpdateClientScope(ctx context.Context, accessToken, realm string, scope ClientScope) error
+	// UpdateClientScopeProtocolMapper updates the protocol mapper associated with clientScope
+	UpdateClientScopeProtocolMapper(ctx context.Context, accessToken, realm, scopeID, mapperID string, mapper ProtocolMapperRepresentation) error
 
 	// DeleteComponent deletes the given component
 	DeleteComponent(ctx context.Context, accessToken, realm, componentID string) error
